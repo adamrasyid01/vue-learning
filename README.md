@@ -114,6 +114,17 @@ Watcher di Vue.js digunakan untuk menangani tindakan yang harus diambil ketika n
 4. v-for untuk menampilkan array of object dari todp
 4. Event Handler setiap button
 
+## VIDEO 11: Vue Lifecycle Hooks
+Lifecycle hooks di Vue.js adalah serangkaian metode yang dijalankan pada titik-titik tertentu dalam siklus hidup suatu komponen. Mereka memungkinkan untuk mengeksekusi kode pada tahapan spesifik, seperti saat komponen dibuat, dimuat, diperbarui, atau dihancurkan. Dengan menggunakan lifecycle hooks, kita dapat mengontrol perilaku komponen dan melakukan berbagai tugas, seperti inisialisasi data, pengaturan event listener, atau pembersihan sumber daya.
+
+
+Alur Diaagram sebuah aplikasi
+
+1. before create -> created
+2. before mount -> mounted (mounted udah kenal DOM)
+3. before update -> updated (sesuatu data ketika berubah)
+
+## VIDEO 12: Membuat Pokedex(Pokemon) menggunakan Vue & PokeAPI
 
 
 
