@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div id="app">
+        <div>
+            <label for="">username: </label><br>
+            <input type="text" placeholder="username" v-model="username">
+        </div>
+        <div>
+            <label for="">address</label><br>
+            <textarea name="" id="" cols="30" rows="10" v-model="address"></textarea>
+        </div>
+        <div>
+            <label for="">Gender</label><br>
+            <input type="radio" value="Pria" v-model="gender">Pria
+            <input type="radio" value="Wanita" v-model="gender">Wanita
+        </div>
+        <div>
+            <label for="">Hobby</label><br>
+            <label for="">Sepak Bola</label>
+            <input type="checkbox" value="sepak bola" v-model="hobbies">
+            <br>
+            
+            <label for="">Volly</label>
+            <input type="checkbox" value="volly" v-model="hobbies">
+            <br>
+
+            <label for="">Takraw</label>
+            <input type="checkbox" value="takraw" v-model="hobbies">
+        </div>
+
+        <div>
+            <label for="">Role</label>
+            <select name="role" id="role" v-model="role">
+                <option disabled value="">Pilih Satu</option>
+                <option value="staff">Staff</option>
+                <option value="finance">Finance</option>
+                <option value="auditor">auditor</option>
+            </select>
+        </div>
+
+        <div>
+            <p>
+                username: {{username}}
+            </p>
+
+            <p>
+                address: {{ address }}
+            </p>
+
+            <p>
+                gender: {{ gender }}
+            </p>
+
+            <p>
+                hobbies: 
+                <span v-if="hobbies.length > 0">
+                    <ul v-for="item in hobbies">
+                        <li>{{ item }}</li>
+                    </ul>
+                </span>
+            </p>
+
+            <p>
+                role: {{ role }}
+            </p>
+        </div>
+    </div>
+    <script type="module">
+        import { createApp } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
+
+        createApp({
+            data(){
+                return{
+                    username: '',
+                    address: '',
+                    gender:'',
+                    hobbies:[],
+                    role:''
+                }
+            }
+        }).mount('#app')
+    </script>
+</body>
+</html>

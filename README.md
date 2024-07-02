@@ -1,5 +1,4 @@
 # Vue.js Learning Videos
-Source Videos Learning : https://www.youtube.com/playlist?list=PLnrs9DcLyeJQ0ZqgkIRRII4kIyc5Hbt3F
 
 ## VIDEO 1: Cara Install Vue JS
 
@@ -21,7 +20,7 @@ Source Videos Learning : https://www.youtube.com/playlist?list=PLnrs9DcLyeJQ0Zqg
 3. `v-else-if`.
 4. `v-show` mirip dengan `v-if`, namun cara Vue melakukan sesuatu di antara mereka adalah dengan mengatur menjadi `display: none`.
 
-### Kapan Menggunakan `v-if` dan `v-show` 
+### Kapan Menggunakan `v-if` dan `v-show`
 - `v-show` untuk dynamic (gampang berubah).
 - `v-if` untuk sekali ambil (dari database).
 
@@ -52,4 +51,51 @@ Source Videos Learning : https://www.youtube.com/playlist?list=PLnrs9DcLyeJQ0Zqg
 
 1. Biasanya di form.
 2. Cara menulisnya `v-on:submit.prevent`.
-3. Dengan menggunakan `v-on:submit.prevent`, Kita dapat mencegah browser untuk refresh halaman tersebut.
+3. Dengan menggunakan `v-on:submit.prevent`, Anda dapat mencegah refresh halaman tersebut.
+
+## VIDEO 6: Binding to Attributes (`v-bind`) href, src, style, class
+
+1. Kenapa ada atribut `v-bind`? Karena tidak bisa menggunakan mustache.
+2. Kegunaannya: Mengikat atribut HTML seperti `src`, `href`, `class`, `style`, dan atribut lainnya ke data dalam model Vue.
+
+**`v-bind` href:**
+- `v-bind:href` (`:href` adalah shorthand-nya)
+
+**`v-bind` src:**
+- `v-bind:src` (`:src` adalah shorthand-nya)
+
+**`v-bind` style, alt, title:**
+- Sama seperti di atas.
+
+**`v-bind:class` dan `id`:**
+- `v-bind:class` (`:class` adalah shorthand-nya)
+- `v-bind:id` (`:id` adalah shorthand-nya)
+
+## VIDEO 7: Menggunakan `v-model` di Vue | Two-Way Data Binding
+
+`v-model` digunakan untuk membuat binding data dua arah antara data di Vue instance dan input HTML. Artinya perubahan pada input HTML secara otomatis memperbarui data di Vue instance, dan perubahan pada data di Vue instance secara otomatis memperbarui nilai input HTML.
+
+`v-model` bisa digunakan pada:
+
+- Input text
+- Textarea
+- Radio buttons
+- Checkbox
+- Dropdown
+
+## VIDEO 8: Computed Properties di Vue | Optimalkan Logika Perhitungan Data
+
+Computed properties digunakan untuk memanipulasi dan menggabungkan data di dalam Vue secara efisien dan untuk merender ulang komponen secara otomatis ketika data yang mereka dependensikan berubah, sehingga kode menjadi lebih bersih dan efisien.
+
+Behaviour computed properties dijalankan ketika ada unsur yang terupdate.
+
+VIDEO 9: Watchers | Reactive Error Message pada Form
+
+cara pakai: Gunakan setelah data, 
+watch(){
+    watch v-model nya
+}
+
+value pada watcher
+
+membuat error label dengan watchers
