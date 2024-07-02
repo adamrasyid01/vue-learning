@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div id="app">
+        <!-- <button v-on:click="count--">-</button>
+        <button v-on:click="count++">+</button> -->
+
+        <!-- shorthand -->
+        <!-- <button @click="count--">-</button>
+        <span>{{ count }}</span>
+        <button @click="count++">+</button> -->
+  
+
+        <!-- methods handler -->
+         <button @click="menambah()">+</button>
+         <span>{{ count }}</span>
+         <button @click="mengurangi()">-</button>
+         <br>
+         <button @click="sayHello('cara fajar')">say hello</button>
+         <br>
+         <input type="text" v-on:keydown.enter ="sayHello('cara Adam')">
+         <br>
+         <form action="whatever.html" method="post" v-on:submit.prevent>
+            <input type="text">
+            <input type="submit" value="send">
+         </form>
+    </div>
+
+
+    <script type="module">
+        import { createApp } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
+
+        createApp({
+            data(){
+                return{
+                    count:0
+                }
+            },
+            methods: {
+                menambah(){
+                    this.count++
+                },
+                mengurangi(){
+                    this.count--
+                },
+                sayHello(param){
+                    alert('halo'+ param)
+                }
+            },
+        }).mount('#app')
+    </script>
+</body>
+</html>
