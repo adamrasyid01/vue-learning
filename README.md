@@ -130,6 +130,156 @@ Alur Diaagram sebuah aplikasi
 2. Membuat Detail dari pokemon saat di klik
 3. Membuat Pencarian pokemon
 
+## VIDEO 13 : Vue JS Single File Component
+
+Jangan pakai vue cli kalau mau SFC, karena vue cli sedang maintenance (gunakan vite)
+
+npm create vue@latest
+
+## VIDEO 14 : Props,Emits,Slots pada Vue Component
+1. Vue SFC menggunakan Composition API
+2. Props dalam components (parent ke child)
+    cara menambahkan props(di child components)
+    <script>
+    export default {
+      name: 'Student',
+      props: {
+        name: {
+          type: String,
+          required: true
+        },
+        age: {
+          type: Number,
+          required: true
+        }
+      }
+    }
+    </script>
+3. Emit (child ke parent)
+Berikut adalah README yang telah diperbaiki dan diformat dengan benar:
+
+---
+
+## VIDEO 15: Vue Router | Install, Setup, Config, dan Implementasi
+
+### Membuat Page Navigation
+
+### Install Vue Router
+1. Jalankan perintah berikut untuk menginstal Vue Router:
+    ```sh
+    npm install vue-router@4
+    ```
+2. Jika berhasil, Vue Router akan muncul di `package.json`.
+
+### Setup Router
+1. Buat folder `router` di dalam `src`.
+2. Buat file `index.js` untuk mendefinisikan routes:
+    ```javascript
+    import { createRouter, createWebHistory } from 'vue-router';
+
+    const routes = [
+        {
+            path: '', 
+            component: ''
+        }
+    ];
+
+    const router = createRouter({
+        history: createWebHistory(),
+        routes
+    });
+
+    export default router;
+    ```
+3. Buat folder `views` di dalam `src`, kemudian buat file Vue untuk menampilkan komponen yang akan di-render.
+4. Tambahkan file Vue tersebut ke dalam `index.js` ke dalam array `routes`.
+5. Daftarkan router di `main.js`:
+    ```javascript
+    import { createApp } from 'vue';
+    import App from './App.vue';
+    import router from './router';
+
+    createApp(App).use(router).mount('#app');
+    ```
+
+### Implementasi Vue Router
+
+---
+
+gunakan <RouterLink to="/">Dashboard</RouterLink>
+
+### Implementasi Vue Router
+
+1. **Buat Navigation Menu**:
+    - Tambahkan navigation menu ke dalam `App.vue` untuk memungkinkan pengguna berpindah antara halaman.
+
+    ```vue
+    <!-- src/App.vue -->
+    <template>
+      <div id="app">
+        <nav>
+          <router-link to="/">Home</router-link>
+          <router-link to="/about">About</router-link>
+        </nav>
+        <router-view/>
+      </div>
+    </template>
+
+    <script>
+    export default {
+      name: 'App'
+    };
+    </script>
+
+    <style>
+    nav {
+      padding: 1rem;
+    }
+    nav a {
+      margin: 0 1rem;
+    }
+    </style>
+    ```
+
+## VIDEO 16: Vue Router Dynamic Routes
+
+**Tambahkan** {path:'/user/:name', component: UserDetailView} di folder router
+
+Dynamic routing dalam Vue.js memungkinkan Anda untuk membuat rute yang dapat menangani parameter dinamis dalam URL. Ini dilakukan menggunakan Vue Router, yang diintegrasikan ke dalam proyek Vue Anda untuk mengelola navigasi dan penanganan rute. Untuk mengatur dynamic routing, Anda pertama-tama mengonfigurasi Vue Router dengan mendefinisikan rute-rute dalam sebuah file JavaScript (biasanya router/index.js). Setiap rute dapat menentukan path yang mencakup segmen dinamis, ditandai dengan titik dua (:) diikuti oleh nama parameter (misalnya /user/:id).
+
+## VIDEO 17: Nested Routes in Vue
+
+Menambah Router Baru
+
+{path:'/user/:name/profile', component: UserProfileView}
+
+Membuat Nested Routes
+
+```
+{
+    path: '/user/:name',
+    component: UserIndexView,
+    children: [
+        {
+            path: '',
+            component: UserDetailView
+        },
+        {
+            path: 'posts',
+            component: UserPostView
+        },
+        {
+            path: 'profile',
+            component: UserProfileView
+        }
+    ]
+}
+```
 
 
 
+Nested routes dalam Vue.js memungkinkan Anda untuk membuat hierarki rute yang bersarang di dalam rute lain. Ini berguna untuk membangun aplikasi dengan struktur navigasi yang kompleks dan terstruktur. 
+
+Dengan menggunakan nested routes, Anda dapat mengorganisir aplikasi Vue Anda secara hierarkis, memungkinkan navigasi yang lebih kompleks dan pengelolaan logika yang terstruktur di berbagai level komponen.
+
+## VIDEO 18: Kenalan sama Pinia | State Management (Store) di Vue
