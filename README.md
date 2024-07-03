@@ -126,7 +126,9 @@ Alur Diaagram sebuah aplikasi
 
 ## VIDEO 12: Membuat Pokedex(Pokemon) menggunakan Vue & PokeAPI
 
-
+1. Membuat List Pokemon
+2. Membuat Detail dari pokemon saat di klik
+3. Membuat Pencarian pokemon
 
 
 

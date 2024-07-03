@@ -18,6 +18,10 @@
         border-left: 2px solid rgba(255, 255, 255, 0.58);
         border-top: 2px solid rgba(255, 255, 255, 0.58);
     }
+
+    .suggested-pokemon{
+        cursor: pointer;
+    }
 </style>
 
 <body>
@@ -26,22 +30,60 @@
             <div class="container bg-dark" style="min-height: 100vh;">
                 <div class="row justify-content-center">
                     <div class="col-5">
-                        <img src="" alt="" style="width:100%">
+                        <img src="pokemon.svg" alt="" style="width:100%">
                     </div>
                 </div>
 
-                <div class="row justify-content-center mt-5">
+                <div class="row justify-content-center mt-5 text-white">
                     <div class="col-6">
-                        <input type="text" class="form-control" placeholder="search pokemon">
+                        <input type="text" class="form-control" placeholder="search pokemon" v-model="search">
+                        <div class="mt-2">
+                            <label for="">Suggestion: </label>
+                            <span class="suggested-pokemon" @click="viewDetailPokemon(i.name)" v-for="i in suggestedPokemon" :key="i.name">{{ i.name }} | </span>
+                        </div>
                     </div>
                 </div>
 
                 <div class="main mt-5 pt-5">
-                    <div class="view-all text-white">
-
+                    <div class="view-all text-white" v-if="!viewedAsDetail">
+                        <div class="row px-5">
+                            <div class="col-12 col-md-4 col-lg-3 mb-3" v-for="item in pokemonList" :key="item.name"
+                                @click="viewDetailPokemon(item.name)">
+                                <div class="card text-center ">
+                                    <img :src=" item.sprites.front_default" alt="">
+                                    <label for="">{{ item.name }}</label>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="view-detail text-white">
 
+                    <div class="view-detail text-white" v-else>
+                        <div class="mb-5">
+                            <button @click="viewedAsDetail=false">View All Pokemon</button>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-12 col-md-6">
+                                <div class="card">
+                                    <img :src="selectedPokemon.sprites.front_default" alt="">
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <h2>{{ selectedPokemon.name }}</h2>
+                                <p>
+                                    <label for="">Type:</label><br>
+                                    <span v-for="i in selectedPokemon.types" :key="i.type.name">
+                                        {{ i.type.name }} |
+                                    </span>
+                                </p>
+                                <p>
+                                    <label for="">Skills: </label><br>
+                                    <span v-for="i in selectedPokemon.moves" :key="i.move.name">
+                                        {{ i.move.name}} |
+                                    </span>
+                                </p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -54,9 +96,56 @@
         createApp({
             data() {
                 return {
-
+                    pokemonList: [],
+                    viewedAsDetail: false,
+                    selectedPokemon: '',
+                    search: '',
+                    gen1Pokemon: [],
+                    suggestedPokemon: ''
                 }
-            }
+            },
+            methods: {
+                async getListPokemon() {
+                    let response = await fetch("https://pokeapi.co/api/v2/pokemon");
+                    let data = await response.json();
+                    let results = data.results;
+
+                    results.forEach(result => {
+                        this.getEachPokemon(result);
+                    });
+                },
+                async getEachPokemon(result) {
+                    let response = await fetch("https://pokeapi.co/api/v2/pokemon/" + result.name);
+                    let data = await response.json();
+
+                    this.pokemonList.push(data);
+                    this.pokemonList.sort((a, b) => a.id - b.id);
+                },
+                async viewDetailPokemon(pokemonName) {
+                    this.viewedAsDetail = true;
+                    let response = await fetch("https://pokeapi.co/api/v2/pokemon/" + pokemonName);
+                    let data = await response.json();
+                    this.selectedPokemon = data;
+                },
+                async getGen1Pokemon() {
+                    let response = await fetch("https://pokeapi.co/api/v2/pokemon?limit=151");
+                    let data = await response.json();
+                    this.gen1Pokemon = data.results;
+                }
+            },
+            watch: {
+                search() {
+                    let filteredPokemon = this.gen1Pokemon.filter(item => {
+                        return item.name.includes(this.search);
+                    });
+
+                    this.suggestedPokemon = filteredPokemon.slice(0, 3);
+                }
+            },
+            mounted() {
+                this.getListPokemon();
+                this.getGen1Pokemon();
+            },
         }).mount('#app')
     </script>
 </body>
