@@ -379,3 +379,5 @@ export default {
 }
 </script>
 ```
+
+## VIDEO 19 : Membuat To-Do List dengan Vue JS dan Pinia
