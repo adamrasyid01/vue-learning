@@ -282,4 +282,100 @@ Nested routes dalam Vue.js memungkinkan Anda untuk membuat hierarki rute yang be
 
 Dengan menggunakan nested routes, Anda dapat mengorganisir aplikasi Vue Anda secara hierarkis, memungkinkan navigasi yang lebih kompleks dan pengelolaan logika yang terstruktur di berbagai level komponen.
 
+Berikut adalah README yang telah diperbaiki dan disusun ulang:
+
 ## VIDEO 18: Kenalan sama Pinia | State Management (Store) di Vue
+
+Pinia adalah state management library untuk Vue.js yang berfungsi untuk menyimpan state aplikasi. Misalnya, jika kita mengubah data counter tanpa menggunakan store dan berpindah halaman, maka counter akan kembali ke nilai default. Dengan menggunakan store seperti Pinia atau Vuex, state dapat disimpan dan diakses secara konsisten di seluruh aplikasi.
+
+### Cara Install:
+```bash
+npm i pinia
+```
+
+### Setup Pinia di Vue.js:
+```javascript
+import { createPinia } from 'pinia'
+import { createApp } from 'vue'
+import App from './App.vue'
+import router from './router'
+
+const app = createApp(App)
+const pinia = createPinia()
+
+app.use(router).use(pinia).mount('#app')
+```
+
+### Membuat Store:
+```javascript
+import { defineStore } from 'pinia'
+
+export const useTodoStore = defineStore('todo', {
+    state: () => ({
+        count: 0,
+        name: 'Eduardo'
+    }),
+    getters: {
+        doubleCount: (state) => state.count * 2,
+    },
+    actions: {
+        increment() {
+            this.count++
+        },
+    },
+})
+```
+
+### Mengimport Store di Komponen Vue:
+```vue
+<script>
+import { useTodoStore } from '@/stores/todoStore'
+
+export default {
+    setup() {
+        const todoStore = useTodoStore()
+
+        return { todoStore }
+    }
+}
+</script>
+
+<template>
+    <h1>Ini halaman todo list</h1>
+    
+    <p>{{ todoStore.name }}</p>
+    <p>Double Count: {{ todoStore.doubleCount }}</p>
+    <p>Count: {{ todoStore.count }}</p>
+
+    <button @click="todoStore.increment">Increment</button>
+</template>
+```
+
+### Mengakses State, Getter, dan Actions di Store:
+```vue
+<template>
+    <h1>Ini halaman todo list</h1>
+
+    <!-- Mengakses state -->
+    <p>Name: {{ todoStore.name }}</p>
+    <p>Count: {{ todoStore.count }}</p>
+    
+    <!-- Mengakses getter -->
+    <p>Double Count: {{ todoStore.doubleCount }}</p>
+
+    <!-- Mengakses action -->
+    <button @click="todoStore.increment">Increment</button>
+</template>
+
+<script>
+import { useTodoStore } from '@/stores/todoStore'
+
+export default {
+    setup() {
+        const todoStore = useTodoStore()
+
+        return { todoStore }
+    }
+}
+</script>
+```
